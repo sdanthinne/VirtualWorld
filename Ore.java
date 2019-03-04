@@ -95,6 +95,10 @@ public class Ore extends Entity implements Executable,Renderable{
         return images.get(imageIndex);
     }
 
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
     /*public static Entity createOre(String id, Point position, int actionPeriod,
                                    List<PImage> images)
     {

@@ -71,7 +71,10 @@ public class Quake extends Entity implements Animatable,Renderable,Executable{
     public int getAnimationPeriod(){
         return QUAKE_ANIMATION_PERIOD;
     }
-
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
     /*public static Entity createQuake(Point position, List<PImage> images)
     {
        return new Entity(EntityKind.QUAKE, QUAKE_ID, position, images,

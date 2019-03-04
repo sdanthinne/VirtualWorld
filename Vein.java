@@ -87,7 +87,10 @@ public class Vein extends Entity implements Executable,Renderable{
     public PImage getCurrentImage(){
         return images.get(imageIndex);
     }
-
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
     /*public static Entity createVein(String id, Point position, int actionPeriod,
                                     List<PImage> images)
     {

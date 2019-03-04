@@ -164,6 +164,10 @@ public class MinerFull extends Entity implements Animatable,Movable,Executable,R
           return false;
        }
     }
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
 
     /*public static Entity createMinerFull(String id, int resourceLimit,
                                          Point position, int actionPeriod, int animationPeriod,

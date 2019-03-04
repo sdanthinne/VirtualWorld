@@ -21,6 +21,11 @@ public class BlackSmith extends Entity implements Renderable{
     public PImage getCurrentImage(){
         return images.get(imageIndex);
     }
+
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
     /*@Override
     public String getId() {
         return id;

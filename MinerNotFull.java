@@ -163,7 +163,10 @@ public class MinerNotFull extends Entity implements Animatable,Movable,Executabl
     public int getAnimationPeriod(){
         return animationPeriod;
     }
-
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
     /*public static Entity createMinerNotFull(String id, int resourceLimit,
                                             Point position, int actionPeriod, int animationPeriod,
                                             List<PImage> images)

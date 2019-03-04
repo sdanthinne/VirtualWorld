@@ -160,6 +160,10 @@ public class OreBlob extends Entity implements Animatable,Movable,Executable,Ren
           return false;
        }
     }
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
 
     /*public static Entity createOreBlob(String id, Point position,
                                        int actionPeriod, int animationPeriod, List<PImage> images)

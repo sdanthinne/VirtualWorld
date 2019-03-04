@@ -15,7 +15,6 @@ public abstract class Entity
    public int resourceCount;
    public int actionPeriod;
    public int animationPeriod;*/
-
    public String getId(){
     return id;
 
@@ -43,6 +42,7 @@ public abstract class Entity
    }
 
    public abstract <R> R accept(EntityVisitor<R> visitor);
+
 
    /*
    public Entity(EntityKind kind, String id, Point position,
