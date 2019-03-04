@@ -111,14 +111,14 @@ public class OreBlob extends Entity implements Animatable,Movable,Executable,Ren
        Optional<Entity> occupant = world.getOccupant(newPos);
 
        if (horiz == 0 ||
-          (occupant.isPresent() && !(occupant.get() instanceof Ore)))
+          (occupant.isPresent() && !(occupant.get().accept(new OreVisitor()))))
        {
           int vert = Integer.signum(destPos.getY() - position.getY());
           newPos = new Point(position.getX(), position.getY() + vert);
           occupant = world.getOccupant(newPos);
 
           if (vert == 0 ||
-             (occupant.isPresent() && !(occupant.get() instanceof Ore)))
+             (occupant.isPresent() && !(occupant.get().accept(new OreVisitor()))))
           {
              newPos = position;
           }
