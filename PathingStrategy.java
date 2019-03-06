@@ -29,4 +29,26 @@ interface PathingStrategy
                             .add(new Point(point.getX() - 1, point.getY()))
                             .add(new Point(point.getX() + 1, point.getY()))
                             .build();
+    static final Function<Point, Stream<Point>> DIAGONAL_NEIGHBORS
+            =
+            point ->
+                    Stream.<Point>builder()
+                            .add(new Point(point.getX()-1, point.getY() - 1))
+                            .add(new Point(point.getX()+1, point.getY() + 1))
+                            .add(new Point(point.getX() - 1, point.getY()+1))
+                            .add(new Point(point.getX() + 1, point.getY()-1))
+                            .build();
+    static final Function<Point, Stream<Point>> ALL_NEIGHBORS
+            =
+            point ->
+                    Stream.<Point>builder()
+                            .add(new Point(point.getX(), point.getY() - 1))
+                            .add(new Point(point.getX(), point.getY() + 1))
+                            .add(new Point(point.getX() - 1, point.getY()))
+                            .add(new Point(point.getX() + 1, point.getY()))
+                            .add(new Point(point.getX()-1, point.getY() - 1))
+                            .add(new Point(point.getX()+1, point.getY() + 1))
+                            .add(new Point(point.getX() - 1, point.getY()+1))
+                            .add(new Point(point.getX() + 1, point.getY()-1))
+                            .build();
 }

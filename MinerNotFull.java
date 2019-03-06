@@ -3,14 +3,12 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerNotFull extends Entity implements Animatable,Movable,Executable,Renderable{
-    //String id;
+public class MinerNotFull extends Miner implements Animatable,Movable,Executable,Renderable{
+
     int resourceLimit;
-    //Point position;
     int actionPeriod;
     int animationPeriod;
     int resourceCount = 0;
-    //List<PImage> images;
     int imageIndex = 0;
 
     public MinerNotFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images) {
@@ -39,36 +37,6 @@ public class MinerNotFull extends Entity implements Animatable,Movable,Executabl
     public void setActionPeriod(int actionPeriod) {
         this.actionPeriod = actionPeriod;
     }
-
-    /*@Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    @Override
-    public List<PImage> getImages() {
-        return images;
-    }
-
-    @Override
-    public void setImages(List<PImage> images) {
-        this.images = images;
-    }*/
 
     public PImage getCurrentImage(){
         return images.get(imageIndex);
@@ -109,7 +77,23 @@ public class MinerNotFull extends Entity implements Animatable,Movable,Executabl
              actionPeriod);
        }
     }
-    public Point nextPositionMiner(WorldModel world,
+
+
+    public int getAnimationPeriod(){
+        return animationPeriod;
+    }
+    public <R> R accept(EntityVisitor<R> visitor)
+    {
+        return visitor.visit(this);
+    }
+    /*public static Entity createMinerNotFull(String id, int resourceLimit,
+                                            Point position, int actionPeriod, int animationPeriod,
+                                            List<PImage> images)
+    {
+       return new Entity(EntityKind.MINER_NOT_FULL, id, position, images,
+          resourceLimit, 0, actionPeriod, animationPeriod);
+    }*/
+    /*public Point nextPositionMiner(WorldModel world,
                                    Point destPos)
     {
         int horiz = Integer.signum(destPos.getX() - position.getX());
@@ -129,49 +113,34 @@ public class MinerNotFull extends Entity implements Animatable,Movable,Executabl
         }
 
         return newPos;
-    }
+    }*/
 
     public boolean moveTo(WorldModel world,
-                           Entity target, EventScheduler scheduler)
+                          Entity target, EventScheduler scheduler)
     {
-       if (position.adjacent(target.getPosition()))
-       {
-          resourceCount += 1;
-          world.removeEntity(target);
-          scheduler.unscheduleAllEvents(target);
+        if (position.adjacent(target.getPosition()))
+        {
+            resourceCount += 1;
+            world.removeEntity(target);
+            scheduler.unscheduleAllEvents(target);
 
-          return true;
-       }
-       else
-       {
-          Point nextPos = this.nextPositionMiner(world, target.getPosition());
+            return true;
+        }
+        else
+        {
+            Point nextPos = this.nextPositionMiner(world, target.getPosition());
 
-          if (!position.equals(nextPos))
-          {
-             Optional<Entity> occupant = world.getOccupant(nextPos);
-             if (occupant.isPresent())
-             {
-                scheduler.unscheduleAllEvents(occupant.get());
-             }
+            if (!position.equals(nextPos))
+            {
+                Optional<Entity> occupant = world.getOccupant(nextPos);
+                if (occupant.isPresent())
+                {
+                    scheduler.unscheduleAllEvents(occupant.get());
+                }
 
-             world.moveEntity((Entity) this, nextPos);
-          }
-          return false;
-       }
+                world.moveEntity((Entity) this, nextPos);
+            }
+            return false;
+        }
     }
-
-    public int getAnimationPeriod(){
-        return animationPeriod;
-    }
-    public <R> R accept(EntityVisitor<R> visitor)
-    {
-        return visitor.visit(this);
-    }
-    /*public static Entity createMinerNotFull(String id, int resourceLimit,
-                                            Point position, int actionPeriod, int animationPeriod,
-                                            List<PImage> images)
-    {
-       return new Entity(EntityKind.MINER_NOT_FULL, id, position, images,
-          resourceLimit, 0, actionPeriod, animationPeriod);
-    }*/
 }
