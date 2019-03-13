@@ -11,6 +11,8 @@ final class Viewport
       this.setNumCols(numCols);
    }
 
+
+
     public int getRow() {
         return row;
     }
@@ -54,6 +56,13 @@ final class Viewport
        return new Point(col - getCol(), row - getRow());
     }
 
+
+    /** returns a point that */
+    public Point viewportToWorld(int col, int row)
+    {
+        //could be moved to viewport, unsure
+        return new Point(col + getCol(), row + getRow());
+    }
     public boolean contains(Point p)
     {
        return p.getY() >= getRow() && p.getY() < getRow() + getNumRows() &&

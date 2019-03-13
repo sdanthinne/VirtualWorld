@@ -9,14 +9,9 @@ public abstract class Miner extends Entity{
                                    Point destPos)
     {
 
-        //PathingStrategy newpath = new SingleStepPathingStrategy();
         PathingStrategy newpath = new AStarPath();
-        Predicate<Point> pointPredicate = new Predicate<Point>() {
-            @Override
-            public boolean test(Point point) {
-                return world.getOccupant(point).isEmpty();
-            }
-        };
+        //PathingStrategy newpath = new AStarPath();
+        Predicate<Point> pointPredicate = (point -> world.getOccupant(point).isEmpty());
         BiPredicate<Point,Point> withinReacher = new BiPredicate<Point, Point>() {
             @Override
             public boolean test(Point point, Point point2) {

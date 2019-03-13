@@ -7,6 +7,7 @@ public class Quake extends Entity implements Animatable,Renderable,Executable{
     public static final String QUAKE_ID = "quake";
     public static final int QUAKE_ACTION_PERIOD = 1100;
     public static final int QUAKE_ANIMATION_PERIOD = 100;
+    static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
     //Point position;
     //List<PImage> images;
     int imageIndex = 0;

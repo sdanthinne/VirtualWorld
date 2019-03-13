@@ -7,8 +7,8 @@ final class WorldModel
     private static final int PROPERTY_KEY = 0;
     public int numRows;
    public int numCols;
-   public Background background[][];
-   public Entity occupancy[][];
+   public Background[][] background;
+   public Entity[][] occupancy;
    public Set<Entity> entities;
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)
@@ -257,6 +257,7 @@ final class WorldModel
 
        return properties.length == Background.BGND_NUM_PROPERTIES;
     }
+
 
     private boolean parseMiner(String[] properties,
                               ImageStore imageStore)

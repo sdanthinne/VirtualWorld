@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AStarPath implements PathingStrategy {
-    //TODO: needs to return a list of points on the path to follow, then return it. Currently only returns the nearest point. Maybe try a single-step approach?
+    // needs to return a list of points on the path to follow, then return it. Currently only returns the nearest point. Maybe try a single-step approach?
     @Override
     //currently, effectively returns a list of the closest points as determined by the manhattan distance to the end goal
     public List<Point> computePath(Point start, Point end, Predicate<Point> canPassThrough, BiPredicate<Point, Point> withinReach, Function<Point, Stream<Point>> potentialNeighbors) {

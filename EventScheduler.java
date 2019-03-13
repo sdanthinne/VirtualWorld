@@ -2,7 +2,6 @@ import java.util.*;
 
 final class EventScheduler
 {
-    private final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
     private PriorityQueue<Event> eventQueue;
    private Map<Entity, List<Event>> pendingEvents;
    private double timeScale;
@@ -102,6 +101,10 @@ final class EventScheduler
                   ((Animatable)entity).getAnimationPeriod());
           break;
 
+
+
+
+
        case "MinerNotFull":
           scheduleEvent(entity,
              new Activity(entity, world, imageStore),
@@ -129,7 +132,7 @@ final class EventScheduler
              new Activity(entity, world, imageStore),
                   ((Executable)entity).getActionPeriod());
           scheduleEvent(entity,
-             new Animation(entity, QUAKE_ANIMATION_REPEAT_COUNT),
+             new Animation(entity, Quake.QUAKE_ANIMATION_REPEAT_COUNT),
                   ((Animatable)entity).getAnimationPeriod());
           break;
 
@@ -138,6 +141,14 @@ final class EventScheduler
              new Activity(entity, world, imageStore),
                   ((Executable)entity).getActionPeriod());
           break;
+
+       case "BigBad":
+           scheduleEvent(entity,
+                   new Activity(entity, world, imageStore),
+                   ((Executable) entity).getActionPeriod());
+           scheduleEvent(entity, (Action) new Animation(entity, 0),
+                   ((Animatable)entity).getAnimationPeriod());
+           break;
 
        default:
        }

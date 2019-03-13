@@ -25,5 +25,6 @@ public class AllFalseEntityVisitor implements EntityVisitor<Boolean>{
     public Boolean visit(Quake o){
         return false;
     }
+    public Boolean visit(BigBad o){return false;}
 
 }

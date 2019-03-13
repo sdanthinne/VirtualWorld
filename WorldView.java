@@ -21,17 +21,11 @@ final class WorldView
       this.viewport = new Viewport(numRows, numCols);
    }
 
-    private Point viewportToWorld(Viewport viewport, int col, int row)
-    {
-        //could be moved to viewport, unsure
-       return new Point(col + viewport.getCol(), row + viewport.getRow());
-    }
-
     private int clamp(int value, int low, int high)
     {
        return Math.min(high, Math.max(value, low));
     }
-
+/**shifts the view of the viewport by colDelta and rowDelta*/
     public void shiftView(int colDelta, int rowDelta)
     {
        int newCol = clamp(this.viewport.getCol() + colDelta, 0,
@@ -48,7 +42,7 @@ final class WorldView
        {
           for (int col = 0; col < viewport.getNumCols(); col++)
           {
-             Point worldPoint = viewportToWorld(viewport, col, row);
+             Point worldPoint = viewport.viewportToWorld(col, row);
              Optional<PImage> image = world.getBackgroundImage(
                      worldPoint);
              if (image.isPresent())

@@ -132,7 +132,7 @@ public class MinerFull extends Miner implements Animatable,Movable,Executable,Re
     /*public Point nextPositionMiner(WorldModel world,
                                    Point destPos)
     {
-        //TODO: this needs to be condensed and nextpositionminer can be deleted, as the computing returns a list of points that we need to navigate through
+        // this needs to be condensed and nextpositionminer can be deleted, as the computing returns a list of points that we need to navigate through
         PathingStrategy newpath = new SingleStepPathingStrategy();
         Predicate<Point> pointPredicate = new Predicate<Point>() {
             @Override

@@ -132,6 +132,21 @@ public final class VirtualWorld
          view.shiftView(dx, dy);
       }
    }
+   public void mousePressed(){
+
+      //int here = mouseX;
+
+      //Point pt = view.viewport.viewportToWorld(mouseX,mouseY);
+      Point pt = new Point(pmouseX/TILE_WIDTH+view.viewport.getCol(),pmouseY/TILE_HEIGHT+view.viewport.getRow());
+
+      System.out.println(mouseX + " " + mouseY);
+      Point pt2 = new Point(10,10);
+      BigBad entity = new BigBad(BigBad.BIGBAD_KEY,0,pt,BigBad.BIGBAD_ACTION_PERIOD,BigBad.BIGBAD_ANIMATION_PERIOD,imageStore.getImageList(BigBad.BIGBAD_KEY));
+      world.addEntity(entity);
+      scheduler.scheduleActions(entity, world, imageStore);
+
+   }
+
 
    public static Background createDefaultBackground(ImageStore imageStore)
    {
