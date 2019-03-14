@@ -51,4 +51,13 @@ interface PathingStrategy
                             .add(new Point(point.getX() - 1, point.getY()+1))
                             .add(new Point(point.getX() + 1, point.getY()-1))
                             .build();
+    static final Function<Point, Stream<Point>> TWO_STEP_NO_DIAGONAL
+            =
+            point ->
+                    Stream.<Point>builder()
+                            .add(new Point(point.getX(), point.getY() - 2))
+                            .add(new Point(point.getX(), point.getY() + 2))
+                            .add(new Point(point.getX() - 2, point.getY()))
+                            .add(new Point(point.getX() + 2, point.getY()))
+                            .build();
 }

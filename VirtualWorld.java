@@ -8,8 +8,8 @@ public final class VirtualWorld
 {
    public static final int TIMER_ACTION_PERIOD = 100;
 
-   public static final int VIEW_WIDTH = 640;
-   public static final int VIEW_HEIGHT = 480;
+   public static final int VIEW_WIDTH = 1000;
+   public static final int VIEW_HEIGHT = 1000;
    public static final int TILE_WIDTH = 32;
    public static final int TILE_HEIGHT = 32;
    public static final int WORLD_WIDTH_SCALE = 2;
@@ -140,10 +140,13 @@ public final class VirtualWorld
       Point pt = new Point(pmouseX/TILE_WIDTH+view.viewport.getCol(),pmouseY/TILE_HEIGHT+view.viewport.getRow());
 
       System.out.println(mouseX + " " + mouseY);
-      Point pt2 = new Point(10,10);
+
       BigBad entity = new BigBad(BigBad.BIGBAD_KEY,0,pt,BigBad.BIGBAD_ACTION_PERIOD,BigBad.BIGBAD_ANIMATION_PERIOD,imageStore.getImageList(BigBad.BIGBAD_KEY));
-      world.addEntity(entity);
-      scheduler.scheduleActions(entity, world, imageStore);
+      if(!world.isOccupied(pt)){
+         world.addEntity(entity);
+         scheduler.scheduleActions(entity, world, imageStore);
+      }
+
 
    }
 

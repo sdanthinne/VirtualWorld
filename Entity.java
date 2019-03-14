@@ -15,6 +15,7 @@ public abstract class Entity
    public int resourceCount;
    public int actionPeriod;
    public int animationPeriod;*/
+   Random rand = new Random();
    public String getId(){
     return id;
 

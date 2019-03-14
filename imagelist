@@ -1,0 +1,51 @@
+blacksmith images/blacksmith.bmp
+blob images/blob1.bmp 255 255 255 0
+blob images/blob2.bmp 255 255 255 0
+blob images/blob3.bmp 255 255 255 0
+blob images/blob4.bmp 255 255 255 0
+blob images/blob5.bmp 255 255 255 0
+blob images/blob6.bmp 255 255 255 0
+blob images/blob7.bmp 255 255 255 0
+blob images/blob8.bmp 255 255 255 0
+blob images/blob9.bmp 255 255 255 0
+blob images/blob10.bmp 255 255 255 0
+blob images/blob11.bmp 255 255 255 0
+blob images/blob12.bmp 255 255 255 0
+grass images/grass.bmp
+miner images/miner1.bmp 252 252 252 0
+miner images/miner2.bmp 252 252 252 0
+miner images/miner3.bmp 252 252 252 0
+miner images/miner4.bmp 252 252 252 0
+miner images/miner5.bmp 252 252 252 0
+obstacle images/obstacle.bmp
+ore images/ore.bmp 201 26 26 0
+quake images/quake1.bmp 255 255 255 0
+quake images/quake2.bmp 255 255 255 0
+quake images/quake3.bmp 255 255 255 0
+quake images/quake4.bmp 255 255 255 0
+quake images/quake5.bmp 255 255 255 0
+quake images/quake6.bmp 255 255 255 0
+rocks images/rock.bmp
+vein images/vein.bmp
+background_default images/none.bmp
+bigbad images/wyvern1.bmp 255 255 255 0
+bigbad images/wyvern2.bmp 255 255 255 0
+bigbad images/wyvern3.bmp 255 255 255 0
+bigbad images/wyvern4.bmp 255 255 255 0
+bigbad images/wyvern5.bmp 255 255 255 0
+bigbad images/wyvern6.bmp 255 255 255 0
+bigbad images/wyvern7.bmp 255 255 255 0
+bigbad images/wyvern8.bmp 255 255 255 0
+splashbackground images/fire101.bmp 255 255 255 0
+splashbackground images/fire102.bmp 255 255 255 0
+splashbackground images/fire103.bmp 255 255 255 0
+splashbackground images/fire104.bmp 255 255 255 0
+splashbackground images/fire105.bmp 255 255 255 0
+splashbackground images/fire106.bmp 255 255 255 0
+splashbackground images/fire107.bmp 255 255 255 0
+splashbackground images/fire108.bmp 255 255 255 0
+splashbackground images/fire109.bmp 255 255 255 0
+splashbackground images/fire110.bmp 255 255 255 0
+splashbackground images/fire111.bmp 255 255 255 0
+splashbackground images/fire112.bmp 255 255 255 0
+splashbackground images/fire113.bmp 255 255 255 0
