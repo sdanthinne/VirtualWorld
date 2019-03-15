@@ -101,6 +101,14 @@ final class EventScheduler
                   ((Animatable)entity).getAnimationPeriod());
           break;
 
+       case "FireBlob":
+
+           scheduleEvent(entity, (Action) new Animation(entity, 0),
+                   ((Animatable)entity).getAnimationPeriod());
+           scheduleEvent(entity,
+                   new Activity(entity, world, imageStore),
+                   ((Executable) entity).getActionPeriod());
+           break;
 
 
 

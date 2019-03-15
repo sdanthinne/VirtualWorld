@@ -26,5 +26,5 @@ public class AllFalseEntityVisitor implements EntityVisitor<Boolean>{
         return false;
     }
     public Boolean visit(BigBad o){return false;}
-
+    public Boolean visit(FireBlob o){return false;}
 }

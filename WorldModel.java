@@ -141,7 +141,7 @@ final class WorldModel
        return this.occupancy[pos.getY()][pos.getX()];
     }
 
-    private void setOccupancyCell(Point pos,
+    public void setOccupancyCell(Point pos,
                                  Entity entity)
     {
        this.occupancy[pos.getY()][pos.getX()] = entity;
@@ -158,7 +158,7 @@ final class WorldModel
        this.background[pos.getY()][pos.getX()] = background;
     }
 
-    private boolean withinBounds(Point pos)
+    public boolean withinBounds(Point pos)
     {
        return pos.getY() >= 0 && pos.getY() < this.numRows &&
           pos.getX() >= 0 && pos.getX() < this.numCols;

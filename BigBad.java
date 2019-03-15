@@ -40,14 +40,36 @@ public class BigBad extends Entity implements Renderable, Animatable,Movable,Exe
             Point oldPos = killTarget.get().getPosition();
             world.removeEntity(killTarget.get());
             scheduler.unscheduleAllEvents(killTarget.get());
+            scheduler.unscheduleAllEvents(this);
+            world.removeEntity(this);
             //random in middle selects a random time for spawning ore for the vein.
             Vein v = new Vein(Vein.VEIN_KEY,oldPos,rand.nextInt(1000)+10000,imageStore.getImageList(Vein.VEIN_KEY));
             //Ore v = new Ore(Ore.ORE_KEY,oldPos,10000,imageStore.getImageList(Ore.ORE_KEY));
+
+            for(int i = -1; i<=1;i++){
+                for(int j=-1;j<=1;j++){
+                    Point side = new Point(oldPos.getX()+i,oldPos.getY()+j);
+                    if(world.withinBounds(side)&&!(i==0&&j==0)){
+                        FireBlob fire = new FireBlob(side,imageStore.getImageList(FireBlob.FIRE_ID));
+                        Optional<Entity> isthere = world.getOccupant(side);
+                        if(isthere.isPresent()&&!isthere.get().accept(new VeinVisitor())){
+                            world.removeEntity(isthere.get());
+                            scheduler.unscheduleAllEvents(isthere.get());
+                        }
+
+                        world.addEntity(fire);
+                        world.setOccupancyCell(side,fire);
+                        scheduler.scheduleActions(fire,world,imageStore);
+
+                    }
+                }
+            }
+            world.setOccupancyCell(oldPos,v);
             world.addEntity(v);
             scheduler.scheduleActions(v,world,imageStore);
             //removing current bigbad
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
+
+            //scheduler.unscheduleAllEvents(this);
 
 
 
@@ -78,12 +100,13 @@ public class BigBad extends Entity implements Renderable, Animatable,Movable,Exe
             if (!position.equals(nextPos))
             {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent())
+                if (!occupant.isPresent())
                 {
-                    scheduler.unscheduleAllEvents(occupant.get());
+                    //scheduler.unscheduleAllEvents(occupant.get());
+                    world.moveEntity((Entity) this, nextPos);
                 }
 
-                world.moveEntity((Entity) this, nextPos);
+
             }
             return false;
         }
@@ -99,7 +122,7 @@ public class BigBad extends Entity implements Renderable, Animatable,Movable,Exe
             }
         };
 
-        List<Point> listPath = newpath.computePath(position,target,pointPredicate,withinReacher,PathingStrategy.CARDINAL_NEIGHBORS);
+        List<Point> listPath = newpath.computePath(position,target,pointPredicate,withinReacher,PathingStrategy.DIAGONAL_NEIGHBORS);
         Point newPos = position;
         if(listPath.size()>0){
             newPos = listPath.get(0);

@@ -8,6 +8,7 @@ public interface EntityVisitor<R> {
     R visit(MinerNotFull o);
     R visit(Obstacle o);
     R visit(BigBad o);
+    R visit(FireBlob o);
 
 
 }

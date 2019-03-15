@@ -67,6 +67,7 @@ public class Vein extends Entity implements Executable,Renderable{
     public void execute(WorldModel world,
                         ImageStore imageStore, EventScheduler scheduler)
     {
+        //todo:when vein is spawned only one of the ore appears in the rop left corner
        Optional<Point> openPt = world.findOpenAround(position);
 
        if (openPt.isPresent())

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 import processing.core.*;
 
@@ -8,12 +9,12 @@ public final class VirtualWorld
 {
    public static final int TIMER_ACTION_PERIOD = 100;
 
-   public static final int VIEW_WIDTH = 1000;
-   public static final int VIEW_HEIGHT = 1000;
+   public static final int VIEW_WIDTH = 1280;//640x480
+   public static final int VIEW_HEIGHT = 960;
    public static final int TILE_WIDTH = 32;
    public static final int TILE_HEIGHT = 32;
-   public static final int WORLD_WIDTH_SCALE = 2;
-   public static final int WORLD_HEIGHT_SCALE = 2;
+   public static final int WORLD_WIDTH_SCALE = 1;
+   public static final int WORLD_HEIGHT_SCALE = 1;
 
    public static final int VIEW_COLS = VIEW_WIDTH / TILE_WIDTH;
    public static final int VIEW_ROWS = VIEW_HEIGHT / TILE_HEIGHT;
@@ -142,7 +143,27 @@ public final class VirtualWorld
       System.out.println(mouseX + " " + mouseY);
 
       BigBad entity = new BigBad(BigBad.BIGBAD_KEY,0,pt,BigBad.BIGBAD_ACTION_PERIOD,BigBad.BIGBAD_ANIMATION_PERIOD,imageStore.getImageList(BigBad.BIGBAD_KEY));
+
       if(!world.isOccupied(pt)){
+         for(int i = -1; i<=1;i++){
+            for(int j=-1;j<=1;j++){
+               Point side = new Point(entity.getPosition().getX()+i,entity.getPosition().getY()+j);
+               if(world.withinBounds(side)&&!(i==0&&j==0)){
+
+                  FireBlob fire = new FireBlob(side,imageStore.getImageList(FireBlob.FIRE_ID));
+                  Optional<Entity> isthere = world.getOccupant(side);
+                  if(isthere.isPresent()&&!isthere.get().accept(new VeinVisitor())){
+                     world.removeEntity(isthere.get());
+                     scheduler.unscheduleAllEvents(isthere.get());
+                  }
+                  world.setOccupancyCell(side,entity);
+                  world.addEntity(fire);
+                  scheduler.scheduleActions(fire,world,imageStore);
+
+               }
+            }
+         }
+         world.setOccupancyCell(pt,entity);
          world.addEntity(entity);
          scheduler.scheduleActions(entity, world, imageStore);
       }

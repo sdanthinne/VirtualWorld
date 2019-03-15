@@ -118,12 +118,13 @@ public class MinerFull extends Miner implements Animatable,Movable,Executable,Re
             if (!position.equals(nextPos))
             {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent())
+                if (!occupant.isPresent())
                 {
-                    scheduler.unscheduleAllEvents(occupant.get());
+                    world.moveEntity((Entity) this, nextPos);
+                    //scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                world.moveEntity((Entity) this, nextPos);
+
             }
             return false;
         }
