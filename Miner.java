@@ -11,12 +11,7 @@ public abstract class Miner extends Entity{
 
         PathingStrategy newpath = new AStarPath();
         Predicate<Point> pointPredicate = (point -> world.getOccupant(point).isEmpty());
-        BiPredicate<Point,Point> withinReacher = new BiPredicate<Point, Point>() {
-            @Override
-            public boolean test(Point point, Point point2) {
-                return point.adjacent(point2);
-            }
-        };
+        BiPredicate<Point,Point> withinReacher = ((point, point2) -> point.adjacent(point2));
 
         List<Point> listPath = newpath.computePath(position,destPos,pointPredicate,withinReacher,PathingStrategy.ALL_NEIGHBORS);
         Point newPos = position;
